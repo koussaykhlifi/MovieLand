@@ -15,20 +15,12 @@ const App = () => {
   }, []);
 
   const searchMovies = async (title) => {
-    console.log("Searching for:", title);
-    try {
-      const response = await fetch(`${API_URL}&s=${title}`);
-      const data = await response.json();
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
 
-      console.log("Data fetched:", data);
-
-      if (data.Search) {
-        setMovies(data.Search);
-      } else {
-        setMovies([]);
-      }
-    } catch (error) {
-      console.error("Error fetching movies:", error);
+    if (data.Search) {
+      setMovies(data.Search);
+    } else {
       setMovies([]);
     }
   };
@@ -47,7 +39,7 @@ const App = () => {
           src={SearchIcon}
           alt="search"
           onClick={() => searchMovies(searchTerm)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
         />
       </div>
 
